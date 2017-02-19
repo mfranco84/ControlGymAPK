@@ -1,162 +1,65 @@
 package com.example.myfirstapp;
 
-import android.app.ProgressDialog;
-import android.content.Intent;
-import android.os.AsyncTask;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.RecyclerView;
 import android.util.Log;
-import android.view.ViewGroup;
 import android.widget.ListAdapter;
-import android.widget.ListView;
 import android.widget.SimpleAdapter;
-import android.widget.TextView;
 import android.widget.Toast;
 
-import org.json.JSONArray;
-import org.json.JSONException;
-import org.json.JSONObject;
+import com.example.myfirstapp.adapter.MiembrosAdapter;
+import com.example.myfirstapp.model.Miembro;
+import com.example.myfirstapp.model.MiembrosResponse;
+import com.example.myfirstapp.rest.*;
 
-import java.util.ArrayList;
-import java.util.HashMap;
+import java.util.Arrays;
+import java.util.List;
+
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
+
 
 public class ListaMiembroActivity extends AppCompatActivity {
-    /*Attributes*/
-    private String TAG = MainActivity.class.getSimpleName();
-    private ProgressDialog pDialog;
-    private ListView lv;
-    // URL to get contacts JSON
-    private static String url = "http://10.0.2.2:50639/api/miembro";
-    ArrayList<HashMap<String, String>> contactList;
+    private static final String TAG = ListaMiembroActivity.class.getSimpleName();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_lista_miembro);
 
-        /*Ejemplo cargar lista json desde url*/
-        this.mostrarLista();
-    }
+        /*if (API_KEY.isEmpty()) {
+            Toast.makeText(getApplicationContext(), "Please obtain your API KEY first from themoviedb.org", Toast.LENGTH_LONG).show();
+            return;
+        }*/
 
-    private void mostrarLista() {
-        contactList = new ArrayList<>();
-        lv = (ListView) findViewById(R.id.list);
+        final LinearLayoutManager layoutManager = new LinearLayoutManager(this);
+        final RecyclerView recyclerView = (RecyclerView) findViewById(R.id.movies_recycler_view);
+        recyclerView.setLayoutManager(layoutManager);
 
-        new GetContacts().execute();
-    }
+        ApiInterface apiService =
+                ApiClient.getClient().create(ApiInterface.class);
 
+//        Call<Miembro> call = apiService.getMiembroPorId(8, "");
+        Call<List<Miembro>> call = apiService.obtenerMiembros("");
+        call.enqueue(new Callback<List<Miembro>>() {
+            @Override
+            public void onResponse(Call<List<Miembro>>call, Response<List<Miembro>> response) {
+                //Log.e(TAG, "response.body().getResults(): " + response.body().getNombre());
+                //Miembro[] miembros = new Miembro[]{response.body()};
+                List<Miembro> miembros = response.body();
 
-    /**
-     * Async task class to get json by making HTTP call
-     */
-    private class GetContacts extends AsyncTask<Void, Void, Void> {
-
-        @Override
-        protected void onPreExecute() {
-            super.onPreExecute();
-            // Showing progress dialog
-            pDialog = new ProgressDialog(ListaMiembroActivity.this);
-            pDialog.setMessage("Please wait...");
-            pDialog.setCancelable(false);
-            pDialog.show();
-
-        }
-
-        @Override
-        protected Void doInBackground(Void... arg0) {
-            HttpHandler sh = new HttpHandler();
-
-            // Making a request to url and getting response
-            String jsonStr = sh.makeServiceCall(url);
-
-            Log.e(TAG, "Response from url: " + jsonStr);
-
-            if (jsonStr != null) {
-                try {
-                    //JSONObject jsonObj = new JSONObject(jsonStr);
-                    JSONArray contacts = new JSONArray(jsonStr);
-                    Log.e(TAG, "contacts: " + contacts.toString());
-
-                    // Getting JSON Array node
-                    //JSONArray contacts = jsonAr.getJSONArray("contacts");
-
-                    // looping through All Contacts
-                    for (int i = 0; i < contacts.length(); i++) {
-                        JSONObject c = contacts.getJSONObject(i);
-
-                        String id = c.getString("IdMiembro");
-                        String name = c.getString("Nombre");
-                        String email = c.getString("Correo");
-                        String address = c.getString("Direccion");
-                        String mobile = c.getString("Telefono");
-
-                        // Phone node is JSON Object
-                        /*
-                        JSONObject phone = c.getJSONObject("phone");
-                        String mobile = phone.getString("mobile");
-                        String home = phone.getString("home");
-                        String office = phone.getString("office");
-                        */
-
-                        // tmp hash map for single contact
-                        HashMap<String, String> contact = new HashMap<>();
-
-                        // adding each child node to HashMap key => value
-                        contact.put("id", id);
-                        contact.put("name", name);
-                        contact.put("email", email);
-                        contact.put("mobile", mobile);
-
-                        // adding contact to contact list
-                        contactList.add(contact);
-                    }
-                } catch (final JSONException e) {
-                    Log.e(TAG, "Json parsing error: " + e.getMessage());
-                    runOnUiThread(new Runnable() {
-                        @Override
-                        public void run() {
-                            Toast.makeText(getApplicationContext(),
-                                    "Json parsing error: " + e.getMessage(),
-                                    Toast.LENGTH_LONG)
-                                    .show();
-                        }
-                    });
-
-                }
-            } else {
-                Log.e(TAG, "Couldn't get json from server.");
-                runOnUiThread(new Runnable() {
-                    @Override
-                    public void run() {
-                        Toast.makeText(getApplicationContext(),
-                                "Couldn't get json from server. Check LogCat for possible errors!",
-                                Toast.LENGTH_LONG)
-                                .show();
-                    }
-                });
-
+                Log.d(TAG, "Number of miembros received: " + miembros.size());
+                recyclerView.setAdapter(new MiembrosAdapter(miembros, R.layout.list_miembro, getApplicationContext()));
             }
 
-            return null;
-        }
-
-        @Override
-        protected void onPostExecute(Void result) {
-            super.onPostExecute(result);
-            // Dismiss the progress dialog
-            if (pDialog.isShowing())
-                pDialog.dismiss();
-            /**
-             * Updating parsed JSON data into ListView
-             * */
-            ListAdapter adapter = new SimpleAdapter(
-                    ListaMiembroActivity.this, contactList,
-                    R.layout.list_item, new String[]{"name", "email",
-                    "mobile"}, new int[]{R.id.name,
-                    R.id.email, R.id.mobile});
-
-            lv.setAdapter(adapter);
-        }
-
+            @Override
+            public void onFailure(Call<List<Miembro>>call, Throwable t) {
+                // Log error here since request failed
+                Log.e(TAG, t.toString());
+            }
+        });
     }
 }
