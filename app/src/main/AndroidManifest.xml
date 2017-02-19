@@ -8,19 +8,51 @@
     <!-- Application -->
     <application
         android:allowBackup="true"
-        android:icon="@mipmap/ic_launcher"
+        android:icon="@drawable/ilauncher"
         android:label="@string/app_name"
         android:supportsRtl="true"
-        android:theme="@style/AppTheme">
-        <activity android:name=".MainActivity">
+        android:theme="@style/AppTheme"
+        >
+        <activity
+            android:name=".Login"
+            android:screenOrientation="portrait">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".DisplayMessageActivity" />
-        <activity android:name=".ListaMiembroActivity"></activity>
+        <activity
+            android:name=".DisplayMessageActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".ListaMiembroActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".MainActivity"
+            android:label="@string/app_name"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".PlanNutrional"
+            android:label="@string/app_plan"
+            android:windowSoftInputMode="stateHidden" />
+        <activity
+            android:name=".Programa"
+            android:label="@string/app_programa"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".Rutinas"
+            android:label="@string/app_rutinas"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".Horarios"
+            android:label="@string/app_horarios"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".Notificaciones"
+            android:label="@string/app_notificaciones"
+            android:screenOrientation="portrait" />
+        <activity android:name=".rounded_border_edittext"></activity>
     </application>
 
 </manifest>
