@@ -54,7 +54,7 @@
             android:layout_centerInParent="true"
             android:scaleType="centerCrop"
             android:src="@drawable/star"
-            android:tint="@color/colorAccent" />
+            android:tint="@color/colorAccentDark" />
 
 
         <TextView
