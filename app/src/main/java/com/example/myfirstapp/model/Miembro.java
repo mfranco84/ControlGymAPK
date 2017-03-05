@@ -20,6 +20,9 @@ public class Miembro {
     @SerializedName("Correo")
     private String Correo;
 
+    @SerializedName("Token")
+    private String Token;
+
     public Miembro(Integer IdMiembro, String Nombre){
         this.IdMiembro = IdMiembro;
         this.Nombre = Nombre;
@@ -47,6 +50,10 @@ public class Miembro {
 
     public void setCorreo(String correo) {
         Correo = correo;
+    }
+
+    public String getToken() {
+        return Token;
     }
 
 }

@@ -1,6 +1,16 @@
 package com.example.myfirstapp.rest;
 
+import android.support.v7.appcompat.BuildConfig;
+
+import com.example.myfirstapp.ControlGymApplication;
+import com.example.myfirstapp.helper.SystemPreferencesHelper;
+
+import java.io.IOException;
+
+import okhttp3.Interceptor;
 import okhttp3.OkHttpClient;
+import okhttp3.Request;
+import okhttp3.Response;
 import okhttp3.logging.HttpLoggingInterceptor;
 import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
@@ -16,17 +26,33 @@ public class ApiClient {
 
 
     public static Retrofit getClient() {
-        OkHttpClient.Builder oK = new OkHttpClient.Builder();
+        OkHttpClient.Builder okBuilder = new OkHttpClient.Builder();
 
-        HttpLoggingInterceptor logging = new HttpLoggingInterceptor();
-        logging.setLevel(HttpLoggingInterceptor.Level.BODY);
-        oK.addInterceptor(logging);
+        if (BuildConfig.DEBUG) {
+            HttpLoggingInterceptor logging = new HttpLoggingInterceptor();
+            logging.setLevel(HttpLoggingInterceptor.Level.BODY);
+            okBuilder.addInterceptor(logging);
+        }
+
+        okBuilder.addInterceptor(new Interceptor() {
+            @Override
+            public Response intercept(Chain chain) throws IOException {
+                Request original = chain.request();
+
+                // Request customization: add request headers
+                Request.Builder requestBuilder = original.newBuilder()
+                        .header("Authorization", SystemPreferencesHelper.getPreference(ControlGymApplication.getContext(), "Authorization")); // <-- this is the important line
+
+                Request request = requestBuilder.build();
+                return chain.proceed(request);
+            }
+        });
 
         if (retrofit==null) {
             retrofit = new Retrofit.Builder()
                     .baseUrl(BASE_URL)
                     .addConverterFactory(GsonConverterFactory.create())
-                    .client(oK.build())
+                    .client(okBuilder.build())
                     .build();
         }
         return retrofit;
