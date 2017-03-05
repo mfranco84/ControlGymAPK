@@ -12,8 +12,8 @@ import android.widget.EditText;
 import android.widget.Toast;
 
 import com.example.myfirstapp.ControlGymApplication;
-import com.example.myfirstapp.PlanNutrional;
 import com.example.myfirstapp.R;
+import com.example.myfirstapp.helper.SystemPreferencesHelper;
 import com.example.myfirstapp.model.Miembro;
 import com.example.myfirstapp.rest.ApiClient;
 import com.example.myfirstapp.rest.ApiInterface;
@@ -57,12 +57,13 @@ public class LoginActivity extends AppCompatActivity {
         progress.setCancelable(false); // disable dismiss by tapping outside of the dialog
         progress.show(); // ejecutar progress.dismiss(); para detener el dialogo de carga
 
-        ApiInterface apiService = ApiClient.getClient().create(ApiInterface.class);
         // Generando parametros para luego ser parseados a formato json
         Map<String, String> params = new HashMap<>();
         params.put("Correo", correo);
         params.put("Clave", clave);
-        //Llamando metodo POST con el objecto correspondiente como parametro
+
+        // Llamando metodo POST con el objeto correspondiente como parametro
+        ApiInterface apiService = ApiClient.getClient().create(ApiInterface.class);
         Call<Miembro> call = apiService.autenticar(params);
         call.enqueue(new Callback<Miembro>() {
             @Override
@@ -70,9 +71,15 @@ public class LoginActivity extends AppCompatActivity {
                 if (response.body().getToken() != null
                         && !response.body().getToken().isEmpty()){
                     Log.d(TAG, "response.body().getResults(): " + response.body().getToken());
-                    Miembro miembro = response.body();
 
-                    Intent Loginn=new Intent(LoginActivity.this, PlanNutrional.class);
+                    // Guardando el token y datos de usuario en archivos de preferencias
+                    SystemPreferencesHelper.savePreference(ControlGymApplication.getContext(), "Authorization", "123four"/*response.body().getToken()*/);
+                    SystemPreferencesHelper.savePreference(ControlGymApplication.getContext(), "Correo", response.body().getCorreo());
+                    SystemPreferencesHelper.savePreference(ControlGymApplication.getContext(), "Nombre", response.body().getNombre());
+                    SystemPreferencesHelper.savePreference(ControlGymApplication.getContext(), "IdMiembro", response.body().getIdMiembro());
+
+                    // Redirigir a siguiente activity
+                    Intent Loginn=new Intent(LoginActivity.this, Programa.class);
                     startActivity(Loginn);
                 } else {
                     Log.d(TAG, "Toast message: " + "Correo o Clave incorrectos");

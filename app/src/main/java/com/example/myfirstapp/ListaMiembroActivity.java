@@ -47,12 +47,16 @@ public class ListaMiembroActivity extends AppCompatActivity {
         call.enqueue(new Callback<List<Miembro>>() {
             @Override
             public void onResponse(Call<List<Miembro>>call, Response<List<Miembro>> response) {
-                //Log.e(TAG, "response.body().getResults(): " + response.body().getNombre());
-                //Miembro[] miembros = new Miembro[]{response.body()};
-                List<Miembro> miembros = response.body();
+                if (response.code() == 200) {
 
-                Log.d(TAG, "Number of miembros received: " + miembros.size());
-                recyclerView.setAdapter(new MiembrosAdapter(miembros, R.layout.list_miembro, getApplicationContext()));
+                    List<Miembro> miembros = response.body();
+
+                    Log.d(TAG, "Number of miembros received: " + miembros.size());
+                    recyclerView.setAdapter(new MiembrosAdapter(miembros, R.layout.list_miembro, getApplicationContext()));
+                } else {
+                    Toast.makeText(ControlGymApplication.getContext(), "Acceso no autorizado. Status code: "+Integer.toString(response.code()), Toast.LENGTH_SHORT).show();
+                    Log.e(TAG, Integer.toString(response.code()));
+                }
             }
 
             @Override
