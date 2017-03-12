@@ -73,7 +73,7 @@ public class LoginActivity extends AppCompatActivity {
                     Log.d(TAG, "response.body().getResults(): " + response.body().getToken());
 
                     // Guardando el token y datos de usuario en archivos de preferencias
-                    SystemPreferencesHelper.savePreference(ControlGymApplication.getContext(), "Authorization", "123four"/*response.body().getToken()*/);
+                    SystemPreferencesHelper.savePreference(ControlGymApplication.getContext(), "Authorization", response.body().getToken());
                     SystemPreferencesHelper.savePreference(ControlGymApplication.getContext(), "Correo", response.body().getCorreo());
                     SystemPreferencesHelper.savePreference(ControlGymApplication.getContext(), "Nombre", response.body().getNombre());
                     SystemPreferencesHelper.savePreference(ControlGymApplication.getContext(), "IdMiembro", response.body().getIdMiembro());

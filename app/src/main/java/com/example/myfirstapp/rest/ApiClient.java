@@ -30,11 +30,11 @@ public class ApiClient {
     public static Retrofit getClient() {
         OkHttpClient.Builder okBuilder = new OkHttpClient.Builder();
 
-        if (BuildConfig.DEBUG) {
+        //if (BuildConfig.DEBUG) {
             HttpLoggingInterceptor logging = new HttpLoggingInterceptor();
             logging.setLevel(HttpLoggingInterceptor.Level.BODY);
             okBuilder.addInterceptor(logging);
-        }
+        //}
 
         okBuilder.addInterceptor(new Interceptor() {
             @Override

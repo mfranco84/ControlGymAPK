@@ -17,8 +17,9 @@ import com.example.myfirstapp.Notificaciones;
 import com.example.myfirstapp.PlanNutrional;
 import com.example.myfirstapp.R;
 import com.example.myfirstapp.Rutinas;
-import com.example.myfirstapp.adapter.MiembrosAdapter;
-import com.example.myfirstapp.model.Miembro;
+import com.example.myfirstapp.adapter.ProgramasAdapter;
+import com.example.myfirstapp.helper.SystemPreferencesHelper;
+import com.example.myfirstapp.model.Programa;
 import com.example.myfirstapp.rest.ApiClient;
 import com.example.myfirstapp.rest.ApiInterface;
 
@@ -81,22 +82,23 @@ public class ProgramaActivity extends ControlGymBaseActivity {
 
         /**/
         final LinearLayoutManager layoutManager = new LinearLayoutManager(this);
-        final RecyclerView recyclerView = (RecyclerView) findViewById(R.id.movies_recycler_view);
+        final RecyclerView recyclerView = (RecyclerView) findViewById(R.id.programas_recycler_view);
         recyclerView.setLayoutManager(layoutManager);
 
         ApiInterface apiService =
                 ApiClient.getClient().create(ApiInterface.class);
 
-        Call<List<Miembro>> call = apiService.obtenerMiembros("");
-        call.enqueue(new Callback<List<Miembro>>() {
+        int idMiembroActivo = SystemPreferencesHelper.getPreferenceInt(ControlGymApplication.getContext(), "IdMiembro");
+        Call<List<Programa>> call = apiService.getProgramasPorMiembroId(idMiembroActivo);
+        call.enqueue(new Callback<List<Programa>>() {
             @Override
-            public void onResponse(Call<List<Miembro>>call, Response<List<Miembro>> response) {
+            public void onResponse(Call<List<Programa>>call, Response<List<Programa>> response) {
                 if (response.code() == 200) {
 
-                    List<Miembro> miembros = response.body();
+                    List<Programa> programas = response.body();
 
-                    Log.d(TAG, "Number of miembros received: " + miembros.size());
-                    recyclerView.setAdapter(new MiembrosAdapter(miembros, R.layout.list_miembro, getApplicationContext()));
+                    Log.d(TAG, "Number of Programas received: " + programas.size());
+                    recyclerView.setAdapter(new ProgramasAdapter(programas, R.layout.list_programa, getApplicationContext()));
                 } else {
                     Toast.makeText(ControlGymApplication.getContext(), "Acceso no autorizado. Status code: "+Integer.toString(response.code()), Toast.LENGTH_SHORT).show();
                     Log.e(TAG, Integer.toString(response.code()));
@@ -104,7 +106,7 @@ public class ProgramaActivity extends ControlGymBaseActivity {
             }
 
             @Override
-            public void onFailure(Call<List<Miembro>>call, Throwable t) {
+            public void onFailure(Call<List<Programa>>call, Throwable t) {
                 // Log error here since request failed
                 Log.e(TAG, t.toString());
             }
