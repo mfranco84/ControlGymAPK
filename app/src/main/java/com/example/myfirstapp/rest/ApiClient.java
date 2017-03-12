@@ -4,6 +4,8 @@ import android.support.v7.appcompat.BuildConfig;
 
 import com.example.myfirstapp.ControlGymApplication;
 import com.example.myfirstapp.helper.SystemPreferencesHelper;
+import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
 
 import java.io.IOException;
 
@@ -48,10 +50,15 @@ public class ApiClient {
             }
         });
 
+        // Converter to json date attributes
+        Gson gson = new GsonBuilder()
+                .setDateFormat("yyyy-MM-dd'T'HH:mm:ss")
+                .create();
+
         if (retrofit==null) {
             retrofit = new Retrofit.Builder()
                     .baseUrl(BASE_URL)
-                    .addConverterFactory(GsonConverterFactory.create())
+                    .addConverterFactory(GsonConverterFactory.create(gson))
                     .client(okBuilder.build())
                     .build();
         }

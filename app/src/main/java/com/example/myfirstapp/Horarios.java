@@ -10,7 +10,7 @@ import android.widget.ArrayAdapter;
 import android.widget.ListView;
 import android.widget.Toast;
 
-import com.example.myfirstapp.activity.Programa;
+import com.example.myfirstapp.activity.ProgramaActivity;
 
 import java.util.ArrayList;
 public class Horarios extends AppCompatActivity {
@@ -46,7 +46,7 @@ public class Horarios extends AppCompatActivity {
 
                 if (opc=="Programas"){
 
-                    Intent Loginn=new Intent(Horarios.this, Programa.class);
+                    Intent Loginn=new Intent(Horarios.this, ProgramaActivity.class);
                     startActivity(Loginn);
                 } if(opc=="Plan Nutrional"){
                     Intent Loginn=new Intent(Horarios.this, PlanNutrional.class);

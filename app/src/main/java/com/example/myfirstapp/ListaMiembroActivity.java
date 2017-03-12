@@ -30,11 +30,6 @@ public class ListaMiembroActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_lista_miembro);
 
-        /*if (API_KEY.isEmpty()) {
-            Toast.makeText(getApplicationContext(), "Please obtain your API KEY first from themoviedb.org", Toast.LENGTH_LONG).show();
-            return;
-        }*/
-
         final LinearLayoutManager layoutManager = new LinearLayoutManager(this);
         final RecyclerView recyclerView = (RecyclerView) findViewById(R.id.movies_recycler_view);
         recyclerView.setLayoutManager(layoutManager);

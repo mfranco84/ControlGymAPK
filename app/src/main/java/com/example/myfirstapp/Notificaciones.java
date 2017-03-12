@@ -1,7 +1,7 @@
 package com.example.myfirstapp;
 
 import com.example.myfirstapp.activity.ControlGymBaseActivity;
-import com.example.myfirstapp.activity.Programa;
+import com.example.myfirstapp.activity.ProgramaActivity;
 
 import android.os.Bundle;
 import android.content.Intent;
@@ -46,7 +46,7 @@ public class Notificaciones extends ControlGymBaseActivity {
 
                 if (opc=="Programas"){
 
-                    Intent Loginn=new Intent(Notificaciones.this, Programa.class);
+                    Intent Loginn=new Intent(Notificaciones.this, ProgramaActivity.class);
                     startActivity(Loginn);
                 } if(opc=="Plan Nutrional"){
                     Intent Loginn=new Intent(Notificaciones.this, PlanNutrional.class);

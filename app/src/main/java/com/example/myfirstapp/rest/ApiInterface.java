@@ -1,7 +1,7 @@
 package com.example.myfirstapp.rest;
 
 import com.example.myfirstapp.model.Miembro;
-import com.example.myfirstapp.model.MiembrosResponse;
+import com.example.myfirstapp.model.Programa;
 
 import java.util.HashMap;
 import java.util.List;
@@ -20,6 +20,10 @@ import retrofit2.http.Field;
  */
 
 public interface ApiInterface {
+    /******************* Login *******************/
+    @POST("loginMiembro")
+    Call<Miembro> autenticar(@Body Map<String, String> body);
+
     /******************* Miembro *******************/
     @GET("miembro")
     Call<List<Miembro>> obtenerMiembros(@Query("api_key") String apiKey);
@@ -30,7 +34,7 @@ public interface ApiInterface {
     @POST("miembro")
     Call<Miembro> crearMiembro();
 
-    /******************* Login *******************/
-    @POST("loginMiembro")
-    Call<Miembro> autenticar(@Body Map<String, String> body);
+    /******************* Programa/Rutinas *******************/
+    @GET("miembro/{miembroId}/programas")
+    Call<List<Programa>> getProgramasPorMiembroId(@Path("miembroId") int miembroId);
 }

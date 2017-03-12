@@ -79,7 +79,7 @@ public class LoginActivity extends AppCompatActivity {
                     SystemPreferencesHelper.savePreference(ControlGymApplication.getContext(), "IdMiembro", response.body().getIdMiembro());
 
                     // Redirigir a siguiente activity
-                    Intent Loginn=new Intent(LoginActivity.this, Programa.class);
+                    Intent Loginn=new Intent(LoginActivity.this, ProgramaActivity.class);
                     startActivity(Loginn);
                 } else {
                     Log.d(TAG, "Toast message: " + "Correo o Clave incorrectos");

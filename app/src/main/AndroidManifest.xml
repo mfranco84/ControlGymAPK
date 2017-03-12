@@ -38,7 +38,7 @@
             android:label="@string/app_plan"
             android:windowSoftInputMode="stateHidden" />
         <activity
-            android:name=".activity.Programa"
+            android:name=".activity.ProgramaActivity"
             android:label="@string/app_programa"
             android:screenOrientation="portrait" />
         <activity

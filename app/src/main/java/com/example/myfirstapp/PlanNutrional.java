@@ -10,7 +10,7 @@ import android.widget.ArrayAdapter;
 import android.widget.ListView;
 import android.widget.Toast;
 
-import com.example.myfirstapp.activity.Programa;
+import com.example.myfirstapp.activity.ProgramaActivity;
 
 import java.util.ArrayList;
 
@@ -52,7 +52,7 @@ public class PlanNutrional extends AppCompatActivity {
 
                 if (opc=="Programas"){
 
-                        Intent Loginn=new Intent(PlanNutrional.this, Programa.class);
+                        Intent Loginn=new Intent(PlanNutrional.this, ProgramaActivity.class);
                         startActivity(Loginn);
                 } if(opc=="Plan Nutrional"){
                     Intent Loginn=new Intent(PlanNutrional.this, PlanNutrional.class);
