@@ -2,6 +2,7 @@ package com.example.myfirstapp.rest;
 
 import com.example.myfirstapp.model.Miembro;
 import com.example.myfirstapp.model.Programa;
+import com.example.myfirstapp.model.Rutina;
 
 import java.util.HashMap;
 import java.util.List;
@@ -34,7 +35,12 @@ public interface ApiInterface {
     @POST("miembro")
     Call<Miembro> crearMiembro();
 
-    /******************* Programa/Rutinas *******************/
+    /******************* Programa/RutinasActivity *******************/
     @GET("miembro/{miembroId}/programas")
     Call<List<Programa>> getProgramasPorMiembroId(@Path("miembroId") int miembroId);
+
+    @GET("programa/{programaId}/rutinas")
+    Call<List<Rutina>> getRutinasPorProgramaId(@Path("programaId") int programaId);
+
+
 }

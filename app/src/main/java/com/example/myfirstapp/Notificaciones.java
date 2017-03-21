@@ -2,6 +2,7 @@ package com.example.myfirstapp;
 
 import com.example.myfirstapp.activity.ControlGymBaseActivity;
 import com.example.myfirstapp.activity.ProgramaActivity;
+import com.example.myfirstapp.activity.RutinasActivity;
 
 import android.os.Bundle;
 import android.content.Intent;
@@ -32,7 +33,7 @@ public class Notificaciones extends ControlGymBaseActivity {
         opcionList=new ArrayList<String> ();
         opcionList.add("Plan Nutrional");
         opcionList.add("Programas");
-        opcionList.add("Rutinas");
+        //opcionList.add("RutinasActivity");
         opcionList.add("Horarios");
         opcionList.add("Notificaciones");
 
@@ -51,9 +52,9 @@ public class Notificaciones extends ControlGymBaseActivity {
                 } if(opc=="Plan Nutrional"){
                     Intent Loginn=new Intent(Notificaciones.this, PlanNutrional.class);
                     startActivity(Loginn);
-                }if (opc=="Rutinas"){
-                    Intent Loginn=new Intent(Notificaciones.this, Rutinas.class);
-                    startActivity(Loginn);
+                /*}if (opc=="RutinasActivity"){
+                    Intent Loginn=new Intent(Notificaciones.this, RutinasActivity.class);
+                    startActivity(Loginn);*/
 
                 } if (opc=="Horarios"){
                     Intent Loginn=new Intent(Notificaciones.this, Horarios.class);

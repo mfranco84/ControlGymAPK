@@ -11,6 +11,7 @@ import android.widget.ListView;
 import android.widget.Toast;
 
 import com.example.myfirstapp.activity.ProgramaActivity;
+import com.example.myfirstapp.activity.RutinasActivity;
 
 import java.util.ArrayList;
 public class Horarios extends AppCompatActivity {
@@ -27,7 +28,7 @@ public class Horarios extends AppCompatActivity {
 
         opcionList.add("Plan Nutrional");
         opcionList.add("Programas");
-        opcionList.add("Rutinas");
+        //opcionList.add("RutinasActivity");
         opcionList.add("Horarios");
         opcionList.add("Notificaciones");
 
@@ -51,9 +52,9 @@ public class Horarios extends AppCompatActivity {
                 } if(opc=="Plan Nutrional"){
                     Intent Loginn=new Intent(Horarios.this, PlanNutrional.class);
                     startActivity(Loginn);
-                }if (opc=="Rutinas"){
-                    Intent Loginn=new Intent(Horarios.this, Rutinas.class);
-                    startActivity(Loginn);
+                /*}if (opc=="RutinasActivity"){
+                    Intent Loginn=new Intent(Horarios.this, RutinasActivity.class);
+                    startActivity(Loginn);*/
 
                 } if (opc=="Horarios"){
                     Intent Loginn=new Intent(Horarios.this, Horarios.class);
