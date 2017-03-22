@@ -42,7 +42,7 @@
             android:label="@string/app_programa"
             android:screenOrientation="portrait" />
         <activity
-            android:name=".Rutinas"
+            android:name=".activity.RutinasActivity"
             android:label="@string/app_rutinas"
             android:screenOrientation="portrait" />
         <activity

@@ -11,4 +11,7 @@
     <string name="app_programa">Programa de ejercicios</string>
     <string name="hola">hola</string>
     <string name="adios">adios</string>
+
+    <string name="drawer_open">Abierto</string>
+    <string name="drawer_close">Cerrado</string>
 </resources>
