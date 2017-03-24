@@ -13,45 +13,51 @@ import android.widget.ArrayAdapter;
 import android.widget.ListView;
 import android.widget.Toast;
 
+import android.support.v7.app.ActionBarDrawerToggle;
+import android.support.v4.widget.DrawerLayout;
+
 import com.example.myfirstapp.ControlGymApplication;
 import com.example.myfirstapp.Horarios;
 import com.example.myfirstapp.Notificaciones;
 import com.example.myfirstapp.R;
 import com.example.myfirstapp.adapter.RutinasAdapter;
+
+import com.example.myfirstapp.model.PlanNutrionalDetalle;
 import com.example.myfirstapp.model.Rutina;
 import com.example.myfirstapp.rest.ApiClient;
 import com.example.myfirstapp.rest.ApiInterface;
-
+import com.example.myfirstapp.model.PlanNutrionalDetalle;
 import java.util.ArrayList;
 import java.util.List;
-
+import com.example.myfirstapp.adapter.PlanNutricionalDetalleAdapter;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 
-import android.support.v7.app.ActionBarDrawerToggle;
-import android.support.v4.widget.DrawerLayout;
+/**
+ * Created by Erick on 23/3/2017.
+ */
 
-public class RutinasActivity extends AppCompatActivity {
+public class PlanNutrionalDetalleActivity extends AppCompatActivity {
     private DrawerLayout mDrawerLayout;
     private ActionBarDrawerToggle mDrawerToggle;
 
-    private static final String TAG = RutinasActivity.class.getSimpleName();
-    ArrayList <String> opcionList;
+    private static final String TAG = PlanNutrionalDetalleActivity.class.getSimpleName();
+    ArrayList<String> opcionList;
 
     ListView drawer;
-    @Override
+
     protected void onCreate(Bundle savedInstanceState) {
 
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_rutinas);
+        setContentView(R.layout.activity_plan_nutrional_detalle);
 
         drawer=(ListView)findViewById(R.id.drawer);
         opcionList=new ArrayList<String> ();
 
-        opcionList.add("Plan Nutrional");
+        opcionList.add("Plan Nutricional");
         opcionList.add("Programas");
-       // opcionList.add("RutinasActivity");
+        // opcionList.add("RutinasActivity");
         opcionList.add("Horarios");
         opcionList.add("Notificaciones");
 
@@ -66,24 +72,24 @@ public class RutinasActivity extends AppCompatActivity {
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
 
                 String opc=opcionList.get(position);
-                Toast.makeText(RutinasActivity.this,opc,Toast.LENGTH_SHORT).show();
+                Toast.makeText(PlanNutrionalDetalleActivity.this,opc,Toast.LENGTH_SHORT).show();
 
                 if (opc=="Programas"){
 
-                    Intent Loginn=new Intent(RutinasActivity.this, ProgramaActivity.class);
+                    Intent Loginn=new Intent(PlanNutrionalDetalleActivity.this, ProgramaActivity.class);
                     startActivity(Loginn);
-                } if(opc=="Plan Nutrional"){
-                    Intent Loginn=new Intent(RutinasActivity.this, PlanNutrionalActivity.class);
+                } if(opc=="Plan Nutricional"){
+                    Intent Loginn=new Intent(PlanNutrionalDetalleActivity.this, PlanNutrionalActivity.class);
                     startActivity(Loginn);
                 /*}if (opc=="RutinasActivity"){
                     Intent Loginn=new Intent(RutinasActivity.this, RutinasActivity.class);
                     startActivity(Loginn);*/
 
                 } if (opc=="Horarios"){
-                    Intent Loginn=new Intent(RutinasActivity.this, Horarios.class);
+                    Intent Loginn=new Intent(PlanNutrionalDetalleActivity.this, Horarios.class);
                     startActivity(Loginn);
                 } if (opc=="Notificaciones"){
-                    Intent Loginn=new Intent(RutinasActivity.this, Notificaciones.class);
+                    Intent Loginn=new Intent(PlanNutrionalDetalleActivity.this, Notificaciones.class);
                     startActivity(Loginn);
                 }
             }
@@ -91,12 +97,12 @@ public class RutinasActivity extends AppCompatActivity {
 
         Bundle extras =getIntent().getExtras();
 
-        String value =extras.getString("idprograma_rut");
+        String value =extras.getString("idplan_nutrional");
         Integer myNum = Integer.parseInt(value);
 
         /**/
         final LinearLayoutManager layoutManager = new LinearLayoutManager(this);
-        final RecyclerView recyclerView = (RecyclerView) findViewById(R.id.rutinas_recycler_view);
+        final RecyclerView recyclerView = (RecyclerView) findViewById(R.id.plan_nutrional_Detalle_recycler_view);
         recyclerView.setLayoutManager(layoutManager);
 
         ApiInterface apiService =
@@ -104,16 +110,16 @@ public class RutinasActivity extends AppCompatActivity {
 
         //int idprograma =Integer.parseInt(value.getText().toString());
 
-        Call<List<Rutina>> call = apiService.getRutinasPorProgramaId(myNum);
-        call.enqueue(new Callback<List<Rutina>>() {
+        Call<List<PlanNutrionalDetalle>> call = apiService.getPlanNutrionalPorPlanID(myNum);
+        call.enqueue(new Callback<List<PlanNutrionalDetalle>>() {
             @Override
-            public void onResponse(Call<List<Rutina>>call, Response<List<Rutina>> response) {
+            public void onResponse(Call<List<PlanNutrionalDetalle>>call, Response<List<PlanNutrionalDetalle>> response) {
                 if (response.code() == 200) {
 
-                    List<Rutina> rutinas = response.body();
+                    List<PlanNutrionalDetalle> PlanNutrionalDetalle = response.body();
 
-                    Log.d(TAG, "Number of Rutinas received: " + rutinas.size());
-                    recyclerView.setAdapter(new RutinasAdapter(rutinas, R.layout.list_rutinas, getApplicationContext()));
+                    Log.d(TAG, "Number of Rutinas received: " + PlanNutrionalDetalle.size());
+                    recyclerView.setAdapter(new PlanNutricionalDetalleAdapter(PlanNutrionalDetalle, R.layout.list_plan_nutrional_detalle, getApplicationContext()));
                 } else {
                     Toast.makeText(ControlGymApplication.getContext(), "Acceso no autorizado. Status code: "+Integer.toString(response.code()), Toast.LENGTH_SHORT).show();
                     Log.e(TAG, Integer.toString(response.code()));
@@ -121,7 +127,7 @@ public class RutinasActivity extends AppCompatActivity {
             }
 
             @Override
-            public void onFailure(Call<List<Rutina>> call, Throwable t) {
+            public void onFailure(Call<List<PlanNutrionalDetalle>> call, Throwable t) {
 
                 Log.e(TAG, t.toString());
             }
@@ -141,4 +147,6 @@ public class RutinasActivity extends AppCompatActivity {
 
 
     }
+
+
 }

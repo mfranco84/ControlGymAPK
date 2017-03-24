@@ -34,8 +34,8 @@
             android:label="@string/app_name"
             android:screenOrientation="portrait" />
         <activity
-            android:name=".PlanNutrional"
-            android:label="@string/app_plan"
+            android:name=".activity.PlanNutrionalActivity"
+            android:label="@string/app_PlanNutricional"
             android:windowSoftInputMode="stateHidden" />
         <activity
             android:name=".activity.ProgramaActivity"
@@ -54,6 +54,11 @@
             android:label="@string/app_notificaciones"
             android:screenOrientation="portrait" />
         <activity android:name=".rounded_border_edittext"></activity>
+
+        <activity
+            android:name=".activity.PlanNutrionalDetalleActivity"
+            android:label="@string/app_PlanNutricionalDetalle"
+            android:windowSoftInputMode="stateHidden" />
     </application>
 
 </manifest>

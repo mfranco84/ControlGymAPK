@@ -11,7 +11,7 @@ import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
 import android.widget.Toast;
-
+import  com.example.myfirstapp.activity.PlanNutrionalActivity;
 
 
 import java.util.ArrayList;
@@ -50,7 +50,7 @@ public class Notificaciones extends ControlGymBaseActivity {
                     Intent Loginn=new Intent(Notificaciones.this, ProgramaActivity.class);
                     startActivity(Loginn);
                 } if(opc=="Plan Nutrional"){
-                    Intent Loginn=new Intent(Notificaciones.this, PlanNutrional.class);
+                    Intent Loginn=new Intent(Notificaciones.this, PlanNutrionalActivity.class);
                     startActivity(Loginn);
                 /*}if (opc=="RutinasActivity"){
                     Intent Loginn=new Intent(Notificaciones.this, RutinasActivity.class);

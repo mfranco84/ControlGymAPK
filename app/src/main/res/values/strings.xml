@@ -3,7 +3,8 @@
     <string name="edit_message">Enter a message</string>
     <string name="button_send">Send</string>
     <string name="app_login">Login</string>
-    <string name="app_plan">Plan Nutrional</string>
+    <string name="app_PlanNutricional">Plan Nutrional</string>
+    <string name="app_PlanNutricionalDetalle">Detalle de Plan Nutricional</string>
     <string name="btn_login">Login</string>
     <string name="app_notificaciones">Notificaciones</string>
     <string name="app_horarios">Horarios de Clases</string>
