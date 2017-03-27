@@ -19,6 +19,7 @@ import com.example.myfirstapp.model.Programa;
 import com.example.myfirstapp.rest.ApiClient;
 import com.example.myfirstapp.rest.ApiInterface;
 
+import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -48,6 +49,25 @@ public class LoginActivity extends AppCompatActivity {
                 // enviarDatosLogin("jacklin@gmail.com", "clave");
             }
         });
+
+        //Login Automatico
+        String Nombre = SystemPreferencesHelper.getPreference(ControlGymApplication.getContext(), "Nombre");
+        if (Nombre.length()>0 ) {
+            Date fecha = new Date();
+            int hora  = fecha.getHours();
+            String Mensaje ="";
+            if (hora<12)
+                Mensaje= "Buenos Dias ";
+            else if (hora>12&& hora<18)
+                Mensaje= "Buenas Tardes";
+            else if (hora>=18)
+                Mensaje="Buenas Noches";
+
+            Toast.makeText(LoginActivity.this,Mensaje+" "+Nombre+ ". Bienvenid@ de nuevo", Toast.LENGTH_LONG).show();
+            Intent Loginn=new Intent(LoginActivity.this, ProgramaActivity.class);
+            startActivity(Loginn);
+        }
+
     }
 
     private void enviarDatosLogin(String correo, String clave){
@@ -83,6 +103,11 @@ public class LoginActivity extends AppCompatActivity {
                     Intent Loginn=new Intent(LoginActivity.this, ProgramaActivity.class);
                     startActivity(Loginn);
                 } else {
+                    // Guardando el token y datos de usuario en archivos de preferencias
+                    SystemPreferencesHelper.savePreference(ControlGymApplication.getContext(), "Authorization", "");
+                    SystemPreferencesHelper.savePreference(ControlGymApplication.getContext(), "Correo", "");
+                    SystemPreferencesHelper.savePreference(ControlGymApplication.getContext(), "Nombre", "");
+                    SystemPreferencesHelper.savePreference(ControlGymApplication.getContext(), "IdMiembro", 0);
                     Log.d(TAG, "Toast message: " + "Correo o Clave incorrectos");
                     Toast.makeText(ControlGymApplication.getContext(), "Correo o Clave incorrectos", Toast.LENGTH_SHORT).show();
                 }
