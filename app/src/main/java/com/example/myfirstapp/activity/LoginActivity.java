@@ -15,6 +15,7 @@ import com.example.myfirstapp.ControlGymApplication;
 import com.example.myfirstapp.R;
 import com.example.myfirstapp.helper.SystemPreferencesHelper;
 import com.example.myfirstapp.model.Miembro;
+import com.example.myfirstapp.model.Programa;
 import com.example.myfirstapp.rest.ApiClient;
 import com.example.myfirstapp.rest.ApiInterface;
 

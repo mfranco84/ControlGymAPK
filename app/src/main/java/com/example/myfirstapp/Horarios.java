@@ -9,7 +9,7 @@ import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
 import android.widget.Toast;
-
+import  com.example.myfirstapp.activity.PlanNutrionalActivity;
 import com.example.myfirstapp.activity.ProgramaActivity;
 import com.example.myfirstapp.activity.RutinasActivity;
 
@@ -50,7 +50,7 @@ public class Horarios extends AppCompatActivity {
                     Intent Loginn=new Intent(Horarios.this, ProgramaActivity.class);
                     startActivity(Loginn);
                 } if(opc=="Plan Nutrional"){
-                    Intent Loginn=new Intent(Horarios.this, PlanNutrional.class);
+                    Intent Loginn=new Intent(Horarios.this, PlanNutrionalActivity.class);
                     startActivity(Loginn);
                 /*}if (opc=="RutinasActivity"){
                     Intent Loginn=new Intent(Horarios.this, RutinasActivity.class);

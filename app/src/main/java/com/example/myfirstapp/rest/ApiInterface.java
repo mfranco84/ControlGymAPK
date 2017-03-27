@@ -1,6 +1,8 @@
 package com.example.myfirstapp.rest;
 
 import com.example.myfirstapp.model.Miembro;
+import com.example.myfirstapp.model.PlanNutrional;
+import com.example.myfirstapp.model.PlanNutrionalDetalle;
 import com.example.myfirstapp.model.Programa;
 import com.example.myfirstapp.model.Rutina;
 
@@ -41,6 +43,14 @@ public interface ApiInterface {
 
     @GET("programa/{programaId}/rutinas")
     Call<List<Rutina>> getRutinasPorProgramaId(@Path("programaId") int programaId);
+
+    /******************* PlanNutrional/PlanNutrionalDetalle *******************/
+
+    @GET("miembro/{miembroId}/PlanNutricional")
+    Call<List<PlanNutrional>> getPlanNutrionalPorMiembroI(@Path("miembroId") int miembroId);
+
+    @GET("PlanNutricional/{plannutrionalId}/PlanNutricionalDetalle")
+    Call<List<PlanNutrionalDetalle>> getPlanNutrionalPorPlanID(@Path("plannutrionalId") int plannutrionalId);
 
 
 }
