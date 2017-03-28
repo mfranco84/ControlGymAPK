@@ -99,8 +99,13 @@ public class ProgramaActivity extends ControlGymBaseActivity {
                     Log.d(TAG, "Number of Programas received: " + programas.size());
                     recyclerView.setAdapter(new ProgramasAdapter(programas, R.layout.list_programa, getApplicationContext()));
                 } else {
-                    Toast.makeText(ControlGymApplication.getContext(), "Acceso no autorizado. Status code: "+Integer.toString(response.code()), Toast.LENGTH_SHORT).show();
+                    Toast.makeText(ControlGymApplication.getContext(), "Acceso no autorizado. Status code: "+Integer.toString(response.code()) + ".", Toast.LENGTH_SHORT).show();
                     Log.e(TAG, Integer.toString(response.code()));
+
+                    // El usuario debe volver a ingresar credenciales
+                    SystemPreferencesHelper.clearPreference(ControlGymApplication.getContext());
+                    Intent Loginn=new Intent(ControlGymApplication.getContext(), LoginActivity.class);
+                    startActivity(Loginn);
                 }
             }
 

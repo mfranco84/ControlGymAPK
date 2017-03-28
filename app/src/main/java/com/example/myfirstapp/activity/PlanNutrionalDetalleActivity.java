@@ -22,6 +22,7 @@ import com.example.myfirstapp.Notificaciones;
 import com.example.myfirstapp.R;
 import com.example.myfirstapp.adapter.RutinasAdapter;
 
+import com.example.myfirstapp.helper.SystemPreferencesHelper;
 import com.example.myfirstapp.model.PlanNutrionalDetalle;
 import com.example.myfirstapp.model.Rutina;
 import com.example.myfirstapp.rest.ApiClient;
@@ -121,8 +122,13 @@ public class PlanNutrionalDetalleActivity extends AppCompatActivity {
                     Log.d(TAG, "Number of Rutinas received: " + PlanNutrionalDetalle.size());
                     recyclerView.setAdapter(new PlanNutricionalDetalleAdapter(PlanNutrionalDetalle, R.layout.list_plan_nutrional_detalle, getApplicationContext()));
                 } else {
-                    Toast.makeText(ControlGymApplication.getContext(), "Acceso no autorizado. Status code: "+Integer.toString(response.code()), Toast.LENGTH_SHORT).show();
+                    Toast.makeText(ControlGymApplication.getContext(), "Acceso no autorizado. Status code: "+Integer.toString(response.code()) + ".", Toast.LENGTH_SHORT).show();
                     Log.e(TAG, Integer.toString(response.code()));
+
+                    // El usuario debe volver a ingresar credenciales
+                    SystemPreferencesHelper.clearPreference(ControlGymApplication.getContext());
+                    Intent Loginn=new Intent(ControlGymApplication.getContext(), LoginActivity.class);
+                    startActivity(Loginn);
                 }
             }
 

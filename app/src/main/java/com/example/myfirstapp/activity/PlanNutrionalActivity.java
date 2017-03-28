@@ -115,8 +115,13 @@ public class PlanNutrionalActivity extends AppCompatActivity {
                     Log.d(TAG, "Number of Programas received: " + plannutricional.size());
                     recyclerView.setAdapter(new PlanNutrionalAdapter(plannutricional, R.layout.list_plan_nutrional, getApplicationContext()));
                 } else {
-                    Toast.makeText(ControlGymApplication.getContext(), "Acceso no autorizado. Status code: "+Integer.toString(response.code()), Toast.LENGTH_SHORT).show();
+                    Toast.makeText(ControlGymApplication.getContext(), "Acceso no autorizado. Status code: "+Integer.toString(response.code()) + ".", Toast.LENGTH_SHORT).show();
                     Log.e(TAG, Integer.toString(response.code()));
+
+                    // El usuario debe volver a ingresar credenciales
+                    SystemPreferencesHelper.clearPreference(ControlGymApplication.getContext());
+                    Intent Loginn=new Intent(ControlGymApplication.getContext(), LoginActivity.class);
+                    startActivity(Loginn);
                 }
             }
 

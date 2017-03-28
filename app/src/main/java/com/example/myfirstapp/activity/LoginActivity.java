@@ -51,6 +51,16 @@ public class LoginActivity extends AppCompatActivity {
         });
 
         //Login Automatico
+        MostrarMensajeBienvenida();
+        String Nombre = SystemPreferencesHelper.getPreference(ControlGymApplication.getContext(), "Nombre");
+        if (Nombre.length()>0)
+        {
+        Intent programa=new Intent(LoginActivity.this, ProgramaActivity.class);
+        startActivity(programa);
+        }
+    }
+
+    private void MostrarMensajeBienvenida() {
         String Nombre = SystemPreferencesHelper.getPreference(ControlGymApplication.getContext(), "Nombre");
         if (Nombre.length()>0 ) {
             Date fecha = new Date();
@@ -64,10 +74,7 @@ public class LoginActivity extends AppCompatActivity {
                 Mensaje="Buenas Noches";
 
             Toast.makeText(LoginActivity.this,Mensaje+" "+Nombre+ ". Bienvenid@ de nuevo", Toast.LENGTH_LONG).show();
-            Intent Loginn=new Intent(LoginActivity.this, ProgramaActivity.class);
-            startActivity(Loginn);
-        }
-
+    }
     }
 
     private void enviarDatosLogin(String correo, String clave){
@@ -99,15 +106,15 @@ public class LoginActivity extends AppCompatActivity {
                     SystemPreferencesHelper.savePreference(ControlGymApplication.getContext(), "Nombre", response.body().getNombre());
                     SystemPreferencesHelper.savePreference(ControlGymApplication.getContext(), "IdMiembro", response.body().getIdMiembro());
 
+                    //Mostrar Mensaje Bienvenida
+                    MostrarMensajeBienvenida();
                     // Redirigir a siguiente activity
                     Intent Loginn=new Intent(LoginActivity.this, ProgramaActivity.class);
                     startActivity(Loginn);
-                } else {
-                    // Guardando el token y datos de usuario en archivos de preferencias
-                    SystemPreferencesHelper.savePreference(ControlGymApplication.getContext(), "Authorization", "");
-                    SystemPreferencesHelper.savePreference(ControlGymApplication.getContext(), "Correo", "");
-                    SystemPreferencesHelper.savePreference(ControlGymApplication.getContext(), "Nombre", "");
-                    SystemPreferencesHelper.savePreference(ControlGymApplication.getContext(), "IdMiembro", 0);
+                }
+                else
+                {
+                    SystemPreferencesHelper.clearPreference(ControlGymApplication.getContext());
                     Log.d(TAG, "Toast message: " + "Correo o Clave incorrectos");
                     Toast.makeText(ControlGymApplication.getContext(), "Correo o Clave incorrectos", Toast.LENGTH_SHORT).show();
                 }
