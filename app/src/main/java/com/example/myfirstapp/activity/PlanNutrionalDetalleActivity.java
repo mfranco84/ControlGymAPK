@@ -23,6 +23,7 @@ import com.example.myfirstapp.R;
 import com.example.myfirstapp.adapter.RutinasAdapter;
 
 import com.example.myfirstapp.helper.SystemPreferencesHelper;
+import com.example.myfirstapp.model.Clase;
 import com.example.myfirstapp.model.PlanNutrionalDetalle;
 import com.example.myfirstapp.model.Rutina;
 import com.example.myfirstapp.rest.ApiClient;
@@ -59,7 +60,7 @@ public class PlanNutrionalDetalleActivity extends AppCompatActivity {
         opcionList.add("Plan Nutricional");
         opcionList.add("Programas");
         // opcionList.add("RutinasActivity");
-        opcionList.add("Horarios");
+        opcionList.add("Clases");
         opcionList.add("Notificaciones");
 
 
@@ -86,8 +87,8 @@ public class PlanNutrionalDetalleActivity extends AppCompatActivity {
                     Intent Loginn=new Intent(RutinasActivity.this, RutinasActivity.class);
                     startActivity(Loginn);*/
 
-                } if (opc=="Horarios"){
-                    Intent Loginn=new Intent(PlanNutrionalDetalleActivity.this, Horarios.class);
+                } if (opc=="Clases"){
+                    Intent Loginn=new Intent(PlanNutrionalDetalleActivity.this, ClaseActivity.class);
                     startActivity(Loginn);
                 } if (opc=="Notificaciones"){
                     Intent Loginn=new Intent(PlanNutrionalDetalleActivity.this, Notificaciones.class);

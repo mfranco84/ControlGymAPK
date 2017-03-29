@@ -5,6 +5,7 @@
     <string name="app_login">Login</string>
     <string name="app_PlanNutricional">Plan Nutrional</string>
     <string name="app_PlanNutricionalDetalle">Detalle de Plan Nutricional</string>
+    <string name="app_clase">Clases</string>
     <string name="btn_login">Login</string>
     <string name="app_notificaciones">Notificaciones</string>
     <string name="app_horarios">Horarios de Clases</string>

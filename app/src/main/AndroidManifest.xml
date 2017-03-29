@@ -59,6 +59,11 @@
             android:name=".activity.PlanNutrionalDetalleActivity"
             android:label="@string/app_PlanNutricionalDetalle"
             android:windowSoftInputMode="stateHidden" />
+
+        <activity
+            android:name=".activity.ClaseActivity"
+            android:label="@string/app_clase"
+            android:windowSoftInputMode="stateHidden" />
     </application>
 
 </manifest>

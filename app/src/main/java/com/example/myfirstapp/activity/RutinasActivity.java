@@ -53,7 +53,7 @@ public class RutinasActivity extends AppCompatActivity {
         opcionList.add("Plan Nutrional");
         opcionList.add("Programas");
        // opcionList.add("RutinasActivity");
-        opcionList.add("Horarios");
+        opcionList.add("Clases");
         opcionList.add("Notificaciones");
 
 
@@ -80,8 +80,8 @@ public class RutinasActivity extends AppCompatActivity {
                     Intent Loginn=new Intent(RutinasActivity.this, RutinasActivity.class);
                     startActivity(Loginn);*/
 
-                } if (opc=="Horarios"){
-                    Intent Loginn=new Intent(RutinasActivity.this, Horarios.class);
+                } if (opc=="Clases"){
+                    Intent Loginn=new Intent(RutinasActivity.this, ClaseActivity.class);
                     startActivity(Loginn);
                 } if (opc=="Notificaciones"){
                     Intent Loginn=new Intent(RutinasActivity.this, Notificaciones.class);

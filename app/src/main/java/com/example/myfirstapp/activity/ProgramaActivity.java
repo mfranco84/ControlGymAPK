@@ -43,7 +43,7 @@ public class ProgramaActivity extends ControlGymBaseActivity {
         opcionList.add("Plan Nutricional");
         opcionList.add("Programas");
         //opcionList.add("RutinasActivity");
-        opcionList.add("Horarios");
+        opcionList.add("Clases");
         opcionList.add("Notificaciones");
 
 
@@ -68,8 +68,8 @@ public class ProgramaActivity extends ControlGymBaseActivity {
                     Intent Loginn=new Intent(ProgramaActivity.this, RutinasActivity.class);
                     startActivity(Loginn);*/
 
-                } if (opc=="Horarios"){
-                    Intent Loginn=new Intent(ProgramaActivity.this, Horarios.class);
+                } if (opc=="Clases"){
+                    Intent Loginn=new Intent(ProgramaActivity.this, ClaseActivity.class);
                     startActivity(Loginn);
                 } if (opc=="Notificaciones"){
                     Intent Loginn=new Intent(ProgramaActivity.this, Notificaciones.class);
