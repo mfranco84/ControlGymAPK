@@ -1,0 +1,42 @@
+{
+  "project_info": {
+    "project_number": "849707248721",
+    "firebase_url": "https://controlgym-c7d41.firebaseio.com",
+    "project_id": "controlgym-c7d41",
+    "storage_bucket": "controlgym-c7d41.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:849707248721:android:f363407d1d70e5c1",
+        "android_client_info": {
+          "package_name": "com.example.myfirstapp"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "849707248721-t0pokcothgdtnu209h100632ra52m79f.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDmgaDSiveFm-SEQOTpyRyvQFGFV3usFE4"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 1,
+          "other_platform_oauth_client": []
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

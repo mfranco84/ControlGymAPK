@@ -12,6 +12,7 @@ import android.widget.EditText;
 import android.widget.Toast;
 
 import com.example.myfirstapp.ControlGymApplication;
+import com.example.myfirstapp.FireBaseNotification.MyFireBaseInstanceIdService;
 import com.example.myfirstapp.R;
 import com.example.myfirstapp.helper.SystemPreferencesHelper;
 import com.example.myfirstapp.model.Miembro;
@@ -31,6 +32,7 @@ public class LoginActivity extends AppCompatActivity {
     private static final String TAG = LoginActivity.class.getSimpleName();
     private final Context thisContext = this;
     Button Login;
+    private MyFireBaseInstanceIdService fireBaseinstanceId = new MyFireBaseInstanceIdService();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -106,8 +108,12 @@ public class LoginActivity extends AppCompatActivity {
                     SystemPreferencesHelper.savePreference(ControlGymApplication.getContext(), "Nombre", response.body().getNombre());
                     SystemPreferencesHelper.savePreference(ControlGymApplication.getContext(), "IdMiembro", response.body().getIdMiembro());
 
+                    // Guardando token de dispositivo para futuras notificaciones
+                    fireBaseinstanceId.registrarToken();
+
                     //Mostrar Mensaje Bienvenida
                     MostrarMensajeBienvenida();
+
                     // Redirigir a siguiente activity
                     Intent Loginn=new Intent(LoginActivity.this, ProgramaActivity.class);
                     startActivity(Loginn);
