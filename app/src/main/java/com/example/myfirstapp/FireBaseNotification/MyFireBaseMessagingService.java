@@ -5,7 +5,7 @@ import android.app.PendingIntent;
 import android.content.Context;
 import android.content.Intent;
 import android.support.v4.app.NotificationCompat;
-
+import android.util.Log;
 import com.example.myfirstapp.R;
 import com.example.myfirstapp.activity.LoginActivity;
 import com.google.firebase.messaging.FirebaseMessagingService;
@@ -16,11 +16,12 @@ import com.google.firebase.messaging.RemoteMessage;
  */
 
 public class MyFireBaseMessagingService extends FirebaseMessagingService {
-
+    private static final String TAG = MyFireBaseMessagingService.class.getSimpleName();
     @Override
     public void onMessageReceived(RemoteMessage remoteMessage) {
         String title = remoteMessage.getNotification().getTitle();
         String body = remoteMessage.getNotification().getBody();
+        Log.d(TAG, "Firebase notification: " + title + " - " + body);
 
         Intent intent = new Intent(this, LoginActivity.class);
         intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);

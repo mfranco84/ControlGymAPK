@@ -24,9 +24,6 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".DisplayMessageActivity"
-            android:screenOrientation="portrait" />
-        <activity
             android:name=".ListaMiembroActivity"
             android:screenOrientation="portrait" />
         <activity
