@@ -12,6 +12,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import okhttp3.ResponseBody;
 import retrofit2.Call;
 import retrofit2.http.Body;
 import retrofit2.http.GET;
@@ -28,6 +29,10 @@ public interface ApiInterface {
     /******************* Login *******************/
     @POST("loginMiembro")
     Call<Miembro> autenticar(@Body Map<String, String> body);
+
+    /******************* Device Token Notificaciones *******************/
+    @POST("deviceToken")
+    Call<ResponseBody> registrarDeviceToken(@Body Map<String, String> body);
 
     /******************* Miembro *******************/
     @GET("miembro")
