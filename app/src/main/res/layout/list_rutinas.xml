@@ -41,7 +41,7 @@
         android:layout_width="wrap_content"
         android:layout_height="25dp"
         android:paddingRight="16dp"
-
+        android:visibility="invisible"
         android:textColor="@color/colorGreyLight" />
 
     <TextView

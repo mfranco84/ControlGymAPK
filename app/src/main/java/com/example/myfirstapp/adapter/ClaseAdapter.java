@@ -9,8 +9,11 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.LinearLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
+import com.example.myfirstapp.ControlGymApplication;
 import com.example.myfirstapp.R;
+import com.example.myfirstapp.activity.HorarioClaseActivity;
 import com.example.myfirstapp.activity.RutinasActivity;
 import com.example.myfirstapp.model.Programa;
 import  com.example.myfirstapp.model.Clase;
@@ -47,18 +50,18 @@ public class ClaseAdapter extends RecyclerView.Adapter<ClaseAdapter.ClaseViewHol
             claseLayout = (LinearLayout) v.findViewById(R.id.list_clases_layout);
             claseNombre = (TextView) v.findViewById(R.id.Nombre_Clase);
             claseid = (TextView) v.findViewById(R.id.Id_Clase);
-
+            btn_clases= (Button) v.findViewById(R.id.btn_ver_clase);
         }
         void setOnclickListener(){
-//            btn_clases.setOnClickListener(this);
+            btn_clases.setOnClickListener(this);
 
         }
         /*metodo para hacer click*/
         @Override
         public void onClick(View v) {
-            /*Intent intent=new Intent(context, RutinasActivity.class);
+            Intent intent=new Intent(context, HorarioClaseActivity.class);
             intent.putExtra("id_clase",claseid.getText());
-            context.startActivity(intent);*/
+            context.startActivity(intent);
         }
     }
 
@@ -78,10 +81,10 @@ public class ClaseAdapter extends RecyclerView.Adapter<ClaseAdapter.ClaseViewHol
 
     @Override
     public void onBindViewHolder(ClaseViewHolder holder, final int position) {
-        //holder.claseNombre.setText(Clase.get(position).getNombre().toString());
-       // holder.claseid.setText(Clase.get(position).getIdClase().toString());
+        holder.claseNombre.setText(Clase.get(position).getNombre());
+        holder.claseid.setText(Clase.get(position).getIdClase().toString());
 
-        holder.claseid.setText("fjdsfjksdnfjsdnk".toString());
+        //holder.claseid.setText("fjdsfjksdnfjsdnk".toString());
 
 
         //nueva linea

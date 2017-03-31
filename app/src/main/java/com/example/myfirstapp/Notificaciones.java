@@ -1,6 +1,8 @@
 package com.example.myfirstapp;
 
+import com.example.myfirstapp.activity.ClaseActivity;
 import com.example.myfirstapp.activity.ControlGymBaseActivity;
+import com.example.myfirstapp.activity.HorarioClaseActivity;
 import com.example.myfirstapp.activity.ProgramaActivity;
 import com.example.myfirstapp.activity.RutinasActivity;
 
@@ -34,7 +36,7 @@ public class Notificaciones extends ControlGymBaseActivity {
         opcionList.add("Plan Nutrional");
         opcionList.add("Programas");
         //opcionList.add("RutinasActivity");
-        opcionList.add("Horarios");
+        opcionList.add("Clases");
         opcionList.add("Notificaciones");
 
         ArrayAdapter adapter= new ArrayAdapter(getApplicationContext(),android.R.layout.simple_expandable_list_item_1,opcionList);
@@ -56,8 +58,8 @@ public class Notificaciones extends ControlGymBaseActivity {
                     Intent Loginn=new Intent(Notificaciones.this, RutinasActivity.class);
                     startActivity(Loginn);*/
 
-                } if (opc=="Horarios"){
-                    Intent Loginn=new Intent(Notificaciones.this, Horarios.class);
+                } if (opc=="Clases"){
+                    Intent Loginn=new Intent(Notificaciones.this, ClaseActivity.class);
                     startActivity(Loginn);
                 } if (opc=="Notificaciones"){
                     Intent Loginn=new Intent(Notificaciones.this, Notificaciones.class);

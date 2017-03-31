@@ -3,14 +3,11 @@
     android:orientation="horizontal"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:id="@+id/list_clases_layout"
-
     android:gravity="center_vertical"
     android:minHeight="72dp"
-
+    android:id="@+id/list_horario_clases_layout"
     android:padding="16dp"
     android:background="?attr/selectableItemBackground">
-
 
     <LinearLayout
         android:layout_width="0dp"
@@ -19,7 +16,7 @@
         android:orientation="vertical">
 
         <TextView
-            android:id="@+id/Nombre_Clase"
+            android:id="@+id/Dia_Clase"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="top"
@@ -28,35 +25,21 @@
             android:textColor="@color/colorBlack"
             android:textSize="16sp" />
 
-
         <TextView
-            android:id="@+id/Id_Clase"
+            android:id="@+id/Hora_Inicio"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:paddingRight="16dp"
             android:textColor="@color/colorBlack"
-            android:visibility="invisible"/>
+            />
 
-
-
+        <TextView
+            android:id="@+id/Hora_Fin"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:paddingRight="16dp"
+            android:textColor="@color/colorBlack"
+           />
 
     </LinearLayout>
-
-<RelativeLayout
-    android:layout_width="match_parent"
-    android:layout_height="match_parent">
-
-    <Button
-        style="@style/Widget.AppCompat.Button.Borderless.Colored"
-        android:layout_marginTop="10dp"
-        android:layout_width="0dp"
-        android:layout_height="0dp"
-        android:layout_weight="1"
-        android:text="Ver Clase"
-        android:id="@+id/btn_ver_clase"/>
-</RelativeLayout>
-
-
-
-
 </LinearLayout>

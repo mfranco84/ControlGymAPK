@@ -40,7 +40,7 @@ import retrofit2.Response;
  * Created by Erick on 23/3/2017.
  */
 
-public class PlanNutrionalDetalleActivity extends AppCompatActivity {
+public class PlanNutrionalDetalleActivity extends ControlGymBaseActivity {
     private DrawerLayout mDrawerLayout;
     private ActionBarDrawerToggle mDrawerToggle;
 

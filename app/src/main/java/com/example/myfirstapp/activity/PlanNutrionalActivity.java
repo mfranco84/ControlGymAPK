@@ -1,6 +1,8 @@
 package com.example.myfirstapp.activity;
 
 import android.content.Intent;
+import android.support.v4.widget.DrawerLayout;
+import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
@@ -34,7 +36,9 @@ import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 
-public class PlanNutrionalActivity extends AppCompatActivity {
+public class PlanNutrionalActivity extends ControlGymBaseActivity{
+    private DrawerLayout mDrawerLayout;
+    private ActionBarDrawerToggle mDrawerToggle;
 
     private static final String TAG = PlanNutrionalActivity.class.getSimpleName();
 
@@ -139,6 +143,7 @@ public class PlanNutrionalActivity extends AppCompatActivity {
         getMenuInflater().inflate(R.menu.menu_main, menu);
         return super.onCreateOptionsMenu(menu);
     }*/
+
 }
 
 
