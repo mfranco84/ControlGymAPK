@@ -12,6 +12,7 @@ import android.widget.Toast;
 import  com.example.myfirstapp.activity.PlanNutrionalActivity;
 import com.example.myfirstapp.activity.ProgramaActivity;
 import com.example.myfirstapp.activity.RutinasActivity;
+import com.example.myfirstapp.activity.ClaseActivity;
 
 import java.util.ArrayList;
 public class Horarios extends AppCompatActivity {
@@ -29,7 +30,7 @@ public class Horarios extends AppCompatActivity {
         opcionList.add("Plan Nutrional");
         opcionList.add("Programas");
         //opcionList.add("RutinasActivity");
-        opcionList.add("Horarios");
+        opcionList.add("Clases");
         opcionList.add("Notificaciones");
 
 
@@ -56,8 +57,8 @@ public class Horarios extends AppCompatActivity {
                     Intent Loginn=new Intent(Horarios.this, RutinasActivity.class);
                     startActivity(Loginn);*/
 
-                } if (opc=="Horarios"){
-                    Intent Loginn=new Intent(Horarios.this, Horarios.class);
+                } if (opc=="Clases"){
+                    Intent Loginn=new Intent(Horarios.this, ClaseActivity.class);
                     startActivity(Loginn);
                 } if (opc=="Notificaciones"){
                     Intent Loginn=new Intent(Horarios.this, Notificaciones.class);

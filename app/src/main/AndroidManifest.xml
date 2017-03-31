@@ -57,6 +57,16 @@
             android:label="@string/app_PlanNutricionalDetalle"
             android:windowSoftInputMode="stateHidden" />
 
+        <activity
+            android:name=".activity.ClaseActivity"
+            android:label="@string/app_clase"
+            android:screenOrientation="portrait" />
+
+        <activity
+            android:name=".activity.HorarioClaseActivity"
+            android:label="@string/app_horario_clase"
+            android:screenOrientation="portrait" />
+
         <!-- [START firebase_service] -->
         <service
             android:name=".FireBaseNotification.MyFireBaseMessagingService">
@@ -73,6 +83,7 @@
             </intent-filter>
         </service>
         <!-- [END firebase_iid_service] -->
+
     </application>
 
 </manifest>

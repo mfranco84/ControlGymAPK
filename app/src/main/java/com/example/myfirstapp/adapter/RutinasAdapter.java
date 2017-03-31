@@ -36,8 +36,8 @@ public class RutinasAdapter extends RecyclerView.Adapter<RutinasAdapter.RutinaVi
             super(v);
             //v.setOnClickListener(this);
             rutinaLayout = (LinearLayout) v.findViewById(R.id.list_rutina_layout);
-            idProgramaEjercicio = (TextView) v.findViewById(R.id.nombre_rutina);
-            nombreRutina = (TextView) v.findViewById(R.id.id_programa_ejercicio);
+            idProgramaEjercicio = (TextView) v.findViewById(R.id.id_programa_ejercicio);
+            nombreRutina = (TextView) v.findViewById(R.id.nombre_rutina);
             detalleRutina = (TextView) v.findViewById(R.id.detalle_rutina);
         }
         /*metodo para hacer click*/

@@ -1,6 +1,8 @@
 package com.example.myfirstapp.activity;
 
 import android.content.Intent;
+import android.support.v4.widget.DrawerLayout;
+import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
@@ -34,7 +36,9 @@ import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 
-public class PlanNutrionalActivity extends AppCompatActivity {
+public class PlanNutrionalActivity extends ControlGymBaseActivity{
+    private DrawerLayout mDrawerLayout;
+    private ActionBarDrawerToggle mDrawerToggle;
 
     private static final String TAG = PlanNutrionalActivity.class.getSimpleName();
 
@@ -57,7 +61,7 @@ public class PlanNutrionalActivity extends AppCompatActivity {
         opcionList.add("Plan Nutrional");
         opcionList.add("Programas");
         //opcionList.add("RutinasActivity");
-        opcionList.add("Horarios");
+        opcionList.add("Clases");
         opcionList.add("Notificaciones");
 
 
@@ -84,8 +88,8 @@ public class PlanNutrionalActivity extends AppCompatActivity {
                     Intent Loginn=new Intent(PlanNutrionalActivity.this, RutinasActivity.class);
                     startActivity(Loginn);*/
 
-                } if (opc=="Horarios"){
-                    Intent Loginn=new Intent(PlanNutrionalActivity.this, Horarios.class);
+                } if (opc=="Clases"){
+                    Intent Loginn=new Intent(PlanNutrionalActivity.this, ClaseActivity.class);
                     startActivity(Loginn);
                 } if (opc=="Notificaciones"){
                     Intent Loginn=new Intent(PlanNutrionalActivity.this, Notificaciones.class);
@@ -139,6 +143,7 @@ public class PlanNutrionalActivity extends AppCompatActivity {
         getMenuInflater().inflate(R.menu.menu_main, menu);
         return super.onCreateOptionsMenu(menu);
     }*/
+
 }
 
 
