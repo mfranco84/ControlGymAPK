@@ -23,8 +23,8 @@ import retrofit2.converter.gson.GsonConverterFactory;
 
 public class ApiClient {
 
-    public static final String BASE_URL = "http://10.0.2.2:50639/api/";
-    // public static final String BASE_URL = "http://controlgymapi.azurewebsites.net/api/";
+    // public static final String BASE_URL = "http://10.0.2.2:50639/api/";
+    public static final String BASE_URL = "http://controlgymapi.azurewebsites.net/api/";
     private static Retrofit retrofit = null;
 
 
