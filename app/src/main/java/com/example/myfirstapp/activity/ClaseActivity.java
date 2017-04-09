@@ -52,7 +52,7 @@ public class ClaseActivity extends ControlGymBaseActivity {
         opcionList.add("Programas");
         //opcionList.add("RutinasActivity");
         opcionList.add("Clases");
-        opcionList.add("Notificaciones");
+
 
 
         ArrayAdapter adapter = new ArrayAdapter(getApplicationContext(), android.R.layout.simple_expandable_list_item_1, opcionList);
@@ -82,10 +82,7 @@ public class ClaseActivity extends ControlGymBaseActivity {
                     Intent Loginn = new Intent(ClaseActivity.this, ClaseActivity.class);
                     startActivity(Loginn);
                 }
-                if (opc == "Notificaciones") {
-                    Intent Loginn = new Intent(ClaseActivity.this, Notificaciones.class);
-                    startActivity(Loginn);
-                }
+
             }
         });
 

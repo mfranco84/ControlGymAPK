@@ -108,6 +108,7 @@ public class LoginActivity extends AppCompatActivity {
                     SystemPreferencesHelper.savePreference(ControlGymApplication.getContext(), "Nombre", response.body().getNombre());
                     SystemPreferencesHelper.savePreference(ControlGymApplication.getContext(), "IdMiembro", response.body().getIdMiembro());
 
+
                     // Guardando token de dispositivo para futuras notificaciones
                     fireBaseinstanceId.registrarToken();
 
@@ -117,6 +118,7 @@ public class LoginActivity extends AppCompatActivity {
                     // Redirigir a siguiente activity
                     Intent Loginn=new Intent(LoginActivity.this, ProgramaActivity.class);
                     startActivity(Loginn);
+                    finish();
                 }
                 else
                 {

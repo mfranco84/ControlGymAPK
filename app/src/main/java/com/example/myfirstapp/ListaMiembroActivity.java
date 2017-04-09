@@ -10,10 +10,12 @@ import android.widget.SimpleAdapter;
 import android.widget.Toast;
 
 import com.example.myfirstapp.adapter.MiembrosAdapter;
+import com.example.myfirstapp.helper.SystemPreferencesHelper;
 import com.example.myfirstapp.model.Miembro;
 import com.example.myfirstapp.model.MiembrosResponse;
 import com.example.myfirstapp.rest.*;
 
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
@@ -36,17 +38,21 @@ public class ListaMiembroActivity extends AppCompatActivity {
 
         ApiInterface apiService =
                 ApiClient.getClient().create(ApiInterface.class);
+        int idMiembroActivo = SystemPreferencesHelper.getPreferenceInt(ControlGymApplication.getContext(), "IdMiembro");
 
-//        Call<Miembro> call = apiService.getMiembroPorId(8, "");
-        Call<List<Miembro>> call = apiService.obtenerMiembros("");
-        call.enqueue(new Callback<List<Miembro>>() {
+
+        Call<Miembro> call = apiService.getMiembroPorId(idMiembroActivo);
+
+        call.enqueue(new Callback<Miembro>() {
             @Override
-            public void onResponse(Call<List<Miembro>>call, Response<List<Miembro>> response) {
+            public void onResponse(Call<Miembro>call, Response<Miembro> response) {
+                Miembro miembro = response.body();
                 if (response.code() == 200) {
 
-                    List<Miembro> miembros = response.body();
+                   miembro = response.body();
+                List <Miembro> miembros=new ArrayList<Miembro>();
+                miembros.add(miembro);
 
-                    Log.d(TAG, "Number of miembros received: " + miembros.size());
                     recyclerView.setAdapter(new MiembrosAdapter(miembros, R.layout.list_miembro, getApplicationContext()));
                 } else {
                     Toast.makeText(ControlGymApplication.getContext(), "Acceso no autorizado. Status code: "+Integer.toString(response.code()), Toast.LENGTH_SHORT).show();
@@ -55,7 +61,7 @@ public class ListaMiembroActivity extends AppCompatActivity {
             }
 
             @Override
-            public void onFailure(Call<List<Miembro>>call, Throwable t) {
+            public void onFailure(Call<Miembro>call, Throwable t) {
                 // Log error here since request failed
                 Log.e(TAG, t.toString());
             }

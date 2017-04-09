@@ -31,7 +31,7 @@ public class Horarios extends AppCompatActivity {
         opcionList.add("Programas");
         //opcionList.add("RutinasActivity");
         opcionList.add("Clases");
-        opcionList.add("Notificaciones");
+
 
 
 
@@ -59,9 +59,6 @@ public class Horarios extends AppCompatActivity {
 
                 } if (opc=="Clases"){
                     Intent Loginn=new Intent(Horarios.this, ClaseActivity.class);
-                    startActivity(Loginn);
-                } if (opc=="Notificaciones"){
-                    Intent Loginn=new Intent(Horarios.this, Notificaciones.class);
                     startActivity(Loginn);
                 }
             }

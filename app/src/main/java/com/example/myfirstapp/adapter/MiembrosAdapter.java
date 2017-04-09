@@ -9,7 +9,9 @@ import android.widget.TextView;
 
 import java.util.List;
 
+import com.example.myfirstapp.ControlGymApplication;
 import com.example.myfirstapp.R;
+import com.example.myfirstapp.helper.SystemPreferencesHelper;
 import com.example.myfirstapp.model.Miembro;
 
 /**
@@ -58,6 +60,8 @@ public class MiembrosAdapter extends RecyclerView.Adapter<MiembrosAdapter.Miembr
         holder.miembroId.setText(miembros.get(position).getIdMiembro().toString());
         holder.miembroCorreo.setText(miembros.get(position).getCorreo());
         holder.rating.setText("10");
+
+
     }
 
     @Override

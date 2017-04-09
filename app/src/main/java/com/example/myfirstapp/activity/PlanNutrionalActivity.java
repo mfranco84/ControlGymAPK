@@ -9,6 +9,7 @@ import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
@@ -60,9 +61,8 @@ public class PlanNutrionalActivity extends ControlGymBaseActivity{
 
         opcionList.add("Plan Nutrional");
         opcionList.add("Programas");
-        //opcionList.add("RutinasActivity");
         opcionList.add("Clases");
-        opcionList.add("Notificaciones");
+
 
 
 
@@ -81,9 +81,11 @@ public class PlanNutrionalActivity extends ControlGymBaseActivity{
 
                         Intent Loginn=new Intent(PlanNutrionalActivity.this, ProgramaActivity.class);
                         startActivity(Loginn);
+
                 } if(opc=="Plan Nutrional"){
                     Intent Loginn=new Intent(PlanNutrionalActivity.this, PlanNutrionalActivity.class);
                     startActivity(Loginn);
+
                 /*}if (opc=="RutinasActivity"){
                     Intent Loginn=new Intent(PlanNutrionalActivity.this, RutinasActivity.class);
                     startActivity(Loginn);*/
@@ -91,12 +93,12 @@ public class PlanNutrionalActivity extends ControlGymBaseActivity{
                 } if (opc=="Clases"){
                     Intent Loginn=new Intent(PlanNutrionalActivity.this, ClaseActivity.class);
                     startActivity(Loginn);
-                } if (opc=="Notificaciones"){
-                    Intent Loginn=new Intent(PlanNutrionalActivity.this, Notificaciones.class);
-                    startActivity(Loginn);
+
                 }
+
             }
         });
+
 
                 /**/
         final LinearLayoutManager layoutManager = new LinearLayoutManager(this);
@@ -137,6 +139,24 @@ public class PlanNutrionalActivity extends ControlGymBaseActivity{
         });
 
     }
+
+
+    public boolean onOptionsItemSelected(MenuItem item) {
+        switch (item.getItemId()){
+            case android.R.id.home:
+                onBackPressed();
+                return true;
+            default:
+                return super.onOptionsItemSelected(item);
+        }
+    }
+
+    @Override
+    public void onBackPressed() {
+        setResult(RESULT_CANCELED);
+        super.onBackPressed();
+    }
+
     /*public boolean onCreateOptionsMenu(Menu menu){
 
 

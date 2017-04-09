@@ -54,7 +54,7 @@ public class RutinasActivity extends ControlGymBaseActivity {
         opcionList.add("Programas");
        // opcionList.add("RutinasActivity");
         opcionList.add("Clases");
-        opcionList.add("Notificaciones");
+
 
 
 
@@ -82,9 +82,6 @@ public class RutinasActivity extends ControlGymBaseActivity {
 
                 } if (opc=="Clases"){
                     Intent Loginn=new Intent(RutinasActivity.this, ClaseActivity.class);
-                    startActivity(Loginn);
-                } if (opc=="Notificaciones"){
-                    Intent Loginn=new Intent(RutinasActivity.this, Notificaciones.class);
                     startActivity(Loginn);
                 }
             }

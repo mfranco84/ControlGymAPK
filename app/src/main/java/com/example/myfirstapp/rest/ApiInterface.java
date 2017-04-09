@@ -39,7 +39,7 @@ public interface ApiInterface {
     Call<List<Miembro>> obtenerMiembros(@Query("api_key") String apiKey);
 
     @GET("miembro/{id}")
-    Call<Miembro> getMiembroPorId(@Path("id") int id, @Query("api_key") String apiKey);
+    Call<Miembro> getMiembroPorId(@Path("id") int id);
 
     @POST("miembro")
     Call<Miembro> crearMiembro();

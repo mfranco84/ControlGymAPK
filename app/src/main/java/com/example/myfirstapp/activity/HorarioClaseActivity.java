@@ -60,7 +60,7 @@ public class HorarioClaseActivity extends ControlGymBaseActivity {
         opcionList.add("Programas");
         // opcionList.add("RutinasActivity");
         opcionList.add("Clases");
-        opcionList.add("Notificaciones");
+
 
 
 
@@ -88,9 +88,6 @@ public class HorarioClaseActivity extends ControlGymBaseActivity {
 
                 } if (opc=="Clases"){
                     Intent Loginn=new Intent(HorarioClaseActivity.this, ClaseActivity.class);
-                    startActivity(Loginn);
-                } if (opc=="Notificaciones"){
-                    Intent Loginn=new Intent(HorarioClaseActivity.this, Notificaciones.class);
                     startActivity(Loginn);
                 }
             }
